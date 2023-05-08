@@ -38,8 +38,6 @@ const Page: React.FC<PageProps> = ({
   // Removes unknown or not allowed bricks
   const { pageTypes, bricks } = useReactBricksContext()
   const pageOk = page ? cleanPage(page, pageTypes, bricks) : null
-  const headerOk = header ? cleanPage(header, pageTypes, bricks) : null
-  const footerOk = footer ? cleanPage(footer, pageTypes, bricks) : null
 
   return (
     <Layout>
@@ -49,17 +47,9 @@ const Page: React.FC<PageProps> = ({
             <title>{page.meta.title}</title>
             <meta name="description" content={page.meta.description} />
           </Head>
-          {headerOk && !errorHeader ? (
-            <PageViewer page={headerOk} showClickToEdit={false} />
-          ) : (
-            <ErrorNoHeader />
-          )}
+
           <PageViewer page={pageOk} />
-          {footerOk && !errorFooter ? (
-            <PageViewer page={footerOk} showClickToEdit={false} />
-          ) : (
-            <ErrorNoFooter />
-          )}
+
         </>
       )}
       {errorNoKeys && <ErrorNoKeys />}
